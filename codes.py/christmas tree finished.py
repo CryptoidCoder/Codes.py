@@ -1,0 +1,78 @@
+import turtle
+turtle.setup(width=1366, height=768, startx = None, starty=None)
+window=turtle.Screen()
+window.bgcolor("black")
+def drawTriangle(color,size,yoffset):
+    turtle.up()
+    turtle.goto(0,yoffset)
+    turtle.color(color)
+    turtle.fillcolor(color)
+    turtle.down()
+    turtle.begin_fill()
+    turtle.goto(-size,yoffset-size)
+    turtle.goto(+size,yoffset-size)
+    turtle.end_fill()
+    turtle.up()
+    
+def drawBall (color,size,xoffset,yoffset):
+    turtle.up()
+    turtle.goto(-xoffset,yoffset,-xoffset-size)
+    turtle.down()
+    turtle.color(color)
+    turtle.fillcolor(color)
+    turtle.begin_fill()
+    turtle.circle(size/2)
+    turtle.end_fill()
+    turtle.up()
+    turtle.goto(+xoffset,yoffset,-xoffset-size)
+    turtle.down()
+    turtle.begin_fill()
+    turtle.circle(size/2)
+    turtle.end_fill
+    turtle.up()
+
+def drawStar(color,size,yoffset):
+    turtle.up()
+    turtle.goto
+    turtle.color(color)
+    turtle.fillcolor(color)
+    turtle.down()
+    turtle.begin_fill()
+    for iterator in range(0,36):
+        turtle.foward(-size)
+        turtle.right()
+        turtle.forward(size)
+    turtle.end_fill()
+    turtle.up()
+
+def drawTrunk(color,size,yoffset):
+    turtle.up()
+    turtle.goto(size,yoffset)
+    turtle.color()
+    turtle.fillcolor(color)
+    turtle.down()
+    turtle.begin_fill()
+    turtle.goto(-size,yoffset)
+    turtle.goto(-size,yoffset, - size)
+    turtle.goto(size,yoffset, - size)
+    turtle.end_fill()
+    turtle.up()
+
+def drawTree():
+    drawTrunk("#ccc662",40,-275)
+    drawTriangle("darkgreen",15,-100)
+    drawTriangle("darkgreen",140,-25)
+    drawTriangle("darkgreen",100,25)
+    drawBall("red",20,175,-100)
+    drawBall("blue",20,140,-25)
+    drawBall("purple",20,100,25)
+    drawStar("yellow",40,25)
+
+turtle.title("Merry Christmas!")
+turtle.speed(0)
+turtle.ht()
+turtle.up()
+turtle.goto(0,200)
+turtle.color("green")
+turtle.write("Merry Christmas!", True, align="center",font=("arial",50,"bold","underline"))
+drawTree()

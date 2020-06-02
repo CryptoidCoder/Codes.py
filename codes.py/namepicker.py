@@ -5,7 +5,7 @@ import tkinter
 import random
 
 #the list of possible names
-names = ['Josh','Caitlin','Rachel','Caleb','Josh+Caitlin','Rachel+Caleb','Caleb+Josh','Rachel+Caitlin','Rachel+Josh','Caitlin+Caleb',' everyone','parents choose']
+names = ['name 1','name 2','name 3','name 4','name 5','name 6']
 
 #a function that will pick (and display) a name
 def pickName():
@@ -16,13 +16,13 @@ root = tkinter.Tk()
 #create a file name
 root.title("Name Picker")
 #set the size
-root.geometry("350x100")
- 
+root.geometry("200x100")
+
 #add a label for displaying the name
-nameLabel = tkinter.Label(root, text="", font=('Helvetica', 35))
+nameLabel = tkinter.Label(root, text="", font=('Helvetica', 32))
 nameLabel.pack()
 
-#add a 'pick' button
+#add a 'pick name' button
 pickButton = tkinter.Button(text="Pick!", command=pickName)
 pickButton.pack()
 
