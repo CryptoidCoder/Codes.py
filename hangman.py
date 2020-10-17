@@ -1,77 +1,204 @@
+import random
+import os
 
-
-from string import ascii_lowercase
-from words import get_random_word
  
+# Funtion to clear te terminal
+def clear():
+    os.system("clear")
  
-def get_num_attempts():
-    """Get user-inputted number of incorrect attempts for the game."""
-    while True:
-        num_attempts = input(
-            'How many incorrect attempts do you want? [1-25] ')
-        try:
-            num_attempts = int(num_attempts)
-            if 1 <= num_attempts <= 25:
-                return num_attempts
-            else:
-                print('{0} is not between 1 and 25'.format(num_attempts))
-        except ValueError:
-            print('{0} is not an integer between 1 and 25'.format(
-                num_attempts))
+# Functuion to print the hangman
+def print_hangman(values):
+    print()
+    print("\t +--------+")
+    print("\t |       | |")
+    print("\t {}       | |".format(values[0]))
+    print("\t{}{}{}      | |".format(values[1], values[2], values[3]))
+    print("\t {}       | |".format(values[4]))
+    print("\t{} {}      | |".format(values[5],values[6]))
+    print("\t         | |")
+    print("  _______________|_|___")
+    print("  `````````````````````")
+    print()
  
+# Function to print the hangman after winning
+def print_hangman_win():
+    print()
+    print("\t +--------+")
+    print("\t         | |")
  
-def get_min_word_length():
-    """Get user-inputted minimum word length for the game."""
-    while True:
-        min_word_length = input(
-            'What minimum word length do you want? [4-16] ')
-        try:
-            min_word_length = int(min_word_length)
-            if 4 <= min_word_length <= 16:                 return min_word_length             else:                 print('{0} is not between 4 and 16'.format(min_word_length))         except ValueError:             print('{0} is not an integer between 4 and 16'.format(                 min_word_length)) def get_display_word(word, idxs):     """Get the word suitable for display."""     if len(word) != len(idxs):         raise ValueError('Word length and indices length are not the same')     displayed_word = ''.join(         [letter if idxs[i] else '*' for i, letter in enumerate(word)])     return displayed_word.strip() def get_next_letter(remaining_letters):     """Get the user-inputted next letter."""     if len(remaining_letters) == 0:         raise ValueError('There are no remaining letters')     while True:         next_letter = input('Choose the next letter: ').lower()         if len(next_letter) != 1:             print('{0} is not a single character'.format(next_letter))         elif next_letter not in ascii_lowercase:             print('{0} is not a letter'.format(next_letter))         elif next_letter not in remaining_letters:             print('{0} has been guessed before'.format(next_letter))         else:             remaining_letters.remove(next_letter)             return next_letter def play_hangman():     """Play a game of hangman.     At the end of the game, returns if the player wants to retry.     """     # Let player specify difficulty     print('Starting a game of Hangman...')     attempts_remaining = get_num_attempts()     min_word_length = get_min_word_length()     # Randomly select a word     print('Selecting a word...')     word = get_random_word(min_word_length)     print()     # Initialize game state variables     idxs = [letter not in ascii_lowercase for letter in word]     remaining_letters = set(ascii_lowercase)     wrong_letters = []     word_solved = False     # Main game loop     while attempts_remaining > 0 and not word_solved:
-        # Print current game state
-        print('Word: {0}'.format(get_display_word(word, idxs)))
-        print('Attempts Remaining: {0}'.format(attempts_remaining))
-        print('Previous Guesses: {0}'.format(' '.join(wrong_letters)))
+    print("\t         | |")
+    print("\t O       | |")
+    print("\t/|\\      | |")
+    print("\t |       | |")
+    print("  ______/_\\______|_|___")
+    print("  `````````````````````")
+    print()
  
-        # Get player's next letter guess
-        next_letter = get_next_letter(remaining_letters)
+# Function to print the word to be guessed
+def print_word(values):
+    print()
+    print("\t", end="")
+    for x in values:
+        print(x, end="")
+    print() 
  
-        # Check if letter guess is in word
-        if next_letter in word:
-            # Guessed correctly
-            print('{0} is in the word!'.format(next_letter))
+# Function to check for win
+def check_win(values):
+    for char in values:
+        if char == '_':
+            return False
+    return True    
  
-            # Reveal matching letters
-            for i in range(len(word)):
-                if word[i] == next_letter:
-                    idxs[i] = True
+# Function for each hangman game
+def hangman_game(word):
+ 
+    clear()
+ 
+    # Stores the letters to be displayed
+    word_display = []
+ 
+    # Stores the correct letters in the word
+    correct_letters = []
+ 
+    # Stores the incorrect guesses made by the player
+    incorrect = []
+ 
+    # Number of chances (incorrect guesses)
+    chances = 0
+ 
+    # Stores the hangman's body values
+    hangman_values = ['O','/','|','\\','|','/','\\']
+ 
+    # Stores the hangman's body values to be shown to the player
+    show_hangman_values = [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+ 
+    # Loop for creating the display word
+    for char in word:
+        if char.isalpha():
+            word_display.append('_')
+            correct_letters.append(char.upper())
         else:
-            # Guessed incorrectly
-            print('{0} is NOT in the word!'.format(next_letter))
+            word_display.append(char)
  
-            # Decrement num of attempts left and append guess to wrong guesses
-            attempts_remaining -= 1
-            wrong_letters.append(next_letter)
+    # Game Loop         
+    while True:
  
-        # Check if word is completely solved
-        if False not in idxs:
-            word_solved = True
+        # Printing necessary values
+        print_hangman(show_hangman_values)
+        print_word(word_display)            
+        print()
+        print("Incorrect characters : ", incorrect)
         print()
  
-    # The game is over: reveal the word
-    print('The word is {0}'.format(word))
  
-    # Notify player of victory or defeat
-    if word_solved:
-        print('Congratulations! You won!')
-    else:
-        print('Try again next time!')
+        # Accepting player input
+        inp = input("Enter a character = ")
+        if len(inp) != 1:
+            clear()
+            print("Wrong choice!! Try Again")
+            continue
  
-    # Ask player if he/she wants to try again
-    try_again = input('Would you like to try again? [y/Y] ')
-    return try_again.lower() == 'y'
+        # Checking whether it is a alphabet
+        if not inp[0].isalpha():
+            clear()
+            print("Wrong choice!! Try Again")
+            continue
  
+        # Checking if it already tried before   
+        if inp.upper() in incorrect:
+            clear()
+            print("Already tried!!")
+            continue   
  
-if __name__ == '__main__':
-    while play_hangman():
+        # Incorrect character input 
+        if inp.upper() not in correct_letters:
+             
+            # Adding in the incorrect list
+            incorrect.append(inp.upper())
+             
+            # Updating the hangman display
+            show_hangman_values[chances] = hangman_values[chances]
+            chances = chances + 1
+             
+            # Checking if the player lost
+            if chances == len(hangman_values):
+                print()
+                clear()
+                print("\tGAME OVER!!!")
+                print_hangman(hangman_values)
+                print("The word is :", word.upper())
+                break
+ 
+        # Correct character input
+        else:
+ 
+            # Updating the word display
+            for i in range(len(word)):
+                if word[i].upper() == inp.upper():
+                    word_display[i] = inp.upper()
+ 
+            # Checking if the player won        
+            if check_win(word_display):
+                clear()
+                print("\tCongratulations! ")
+                print_hangman_win()
+                print("The word is :", word.upper())
+                break
+        clear() 
+     
+ 
+if __name__ == "__main__":
+ 
+    clear()
+ 
+    # Types of categories
+    topics = {1: "DC characters", 2:"Marvel characters", 3:"Anime characters", 4:"Custom Words"}
+ 
+    # Words in each category
+    dataset = {"DC characters":["SUPERMAN", "JOKER", "HARLEY QUINN", "GREEN LANTERN", "FLASH", "WONDER WOMAN", "AQUAMAN", "MARTIAN MANHUNTER", "BATMAN"],\
+                 "Marvel characters":["CAPTAIN AMERICA", "IRON MAN", "THANOS", "HAWKEYE", "BLACK PANTHER", "BLACK WIDOW"],
+                 "Anime characters":["MONKEY D. LUFFY", "RORONOA ZORO", "LIGHT YAGAMI", "MIDORIYA IZUKU"],
+                 "Custom Words":["coronavirus","apocaplypse","zombie"]
+                 }
+     
+    # The GAME LOOP
+    while True:
+ 
+        # Printing the game menu
         print()
+        print("-----------------------------------------")
+        print("\t\tGAME MENU")
+        print("-----------------------------------------")
+        for key in topics:
+            print("Press", key, "to select", topics[key])
+        print("Press", len(topics)+1, "to quit")    
+        print()
+         
+        # Handling the player category choice
+        try:
+            choice = int(input("Enter your choice = "))
+        except ValueError:
+            clear()
+            print("Wrong choice!!! Try again")
+            continue
+ 
+        # Sanity checks for input
+        if choice > len(topics)+1:
+            clear()
+            print("No such topic!!! Try again.")
+            continue   
+ 
+        # The EXIT choice   
+        elif choice == len(topics)+1:
+            print()
+            print("Thank you for playing!")
+            break
+ 
+        # The topic chosen
+        chosen_topic = topics[choice]
+ 
+        # The word randomly selected
+        ran = random.choice(dataset[chosen_topic])
+ 
+        # The overall game function
+        hangman_game(ran)

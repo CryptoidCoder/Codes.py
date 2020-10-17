@@ -1,6 +1,7 @@
 #Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:06:47) [MSC v.1914 32 bit (Intel)] on win32
 #Type "copyright", "credits" or "license()" for more information.
 import turtle
+import time
 turtle.setup(width=1366, height=768, startx = None, starty=None)
 window=turtle.Screen()
 window.bgcolor("black")
@@ -78,3 +79,5 @@ turtle.goto(0,200)
 turtle.color("green")
 turtle.write("Merry Christmas!", True, align="center",font=("arial",50,"bold"))
 drawTree()
+
+time.sleep(5)

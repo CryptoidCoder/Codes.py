@@ -1,0 +1,13 @@
+#snake.py
+freegames
+
+#bomb-sound.py
+playsound
+
+#word_association.py
+nltk
+pandas
+networkx
+
+#testing.py
+winsound

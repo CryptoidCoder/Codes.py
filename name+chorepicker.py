@@ -5,10 +5,10 @@ import tkinter
 import random
 
 #the list of possible names
-names = [' Josh',' Caitlin',' Rachel',' Caleb',' Josh+Caitlin',' Rachel+Caleb',' Caleb+Josh',' Rachel+Caitlin',' Rachel+Josh',' Caitlin+Caleb','  everyone',' parents choose']
+names = [' Name1',' Name2',' Name3',' Name4',' Name1+Name2',' Name3+Name4',' Name4+Name1',' Name3+Name2',' Name3+Name1',' Name2+Name4','  Everyone','Name1 Choose', 'Name2 Choose', 'Name3 Choose', 'Name4 Choose']
 
 #the list of possible chores
-chores = [' washing up',' loading the dishwasher',' unloading the dishwasher',' laundry',' cooking dinner',' cleaning the house',' cleaning your room',' clearing the table',' sorting the clothes into piles','  helping setup at church']
+chores = [' Chore1',' Chore2',' Chore3',' Chore4',' Chore5',' Chore6',' Chore7',' Chore8',' Chore9',' Chore9']
 
 #a function that will pick (and display) a name + chore
 def pick():
