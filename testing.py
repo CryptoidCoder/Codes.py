@@ -1,6 +1,5 @@
 import winsound
 import time
-import msvcrt
 # import modules
 debug_mode = 'off'
 
