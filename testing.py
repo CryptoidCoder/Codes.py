@@ -1,7 +1,7 @@
 import winsound
 import time
 # import modules
-debug_mode = 'off'
+debug_mode = 'on'
 
 if debug_mode == 'on': 
     pitch = 900
@@ -272,7 +272,7 @@ print('Definitions of letters done')
 import keyboard
 
 while True:
-    print(keyboard.read_key())
+    #print(keyboard.read_key())
     if keyboard.read_key() == "a":
         a()
     elif keyboard.read_key() == 'b':
