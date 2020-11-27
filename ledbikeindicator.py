@@ -1,3 +1,5 @@
+#a script for a raspberry pi to be used as bicycle indicators
+
 import time # so we can wait between LED on and off
 import RPi.GPIO as GPIO #so we can use GPIO's
 

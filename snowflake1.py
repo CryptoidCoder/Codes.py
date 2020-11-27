@@ -1,3 +1,5 @@
+#script to draw a snowflake
+
 from turtle import Turtle
 t = Turtle()
 t.speed(0)

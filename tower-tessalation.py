@@ -1,3 +1,6 @@
+# a script to draw shapes on top of each other with colours changing.
+# also known as a tower tessalation
+
 import turtle
 import math
 import colorsys

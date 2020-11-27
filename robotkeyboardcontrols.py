@@ -1,3 +1,5 @@
+#a program to control a raspberry pi robot using a keyboard through vnc
+
 import RPi.GPIO as GPIO # Import the GPIO Library
 import time # Import the Time library
  # Set the GPIO modes

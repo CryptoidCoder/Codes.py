@@ -1,3 +1,5 @@
+#This script is to play a sound using python
+
 from playsound import playsound
-playsound('audio .mp3')
+playsound('bombsoundwav.wav')
 

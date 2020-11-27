@@ -1,5 +1,7 @@
-#if oyur going to use this you will need to install the folllowing
+#if your going to use this you will need to install the folllowing
 #sudo apt-get install python-cwiid
+
+# a script to control a raspberry pi robot using a wii remote.
 
 # CamJam EduKit 3 - Robotics
 # Wii controller remote control script

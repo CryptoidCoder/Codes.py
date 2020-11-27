@@ -1,3 +1,6 @@
+#a script for tick tack toe game
+# in future make this into a gui rather than a cli game.
+
 import random
 
 def start_player():
