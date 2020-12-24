@@ -9,8 +9,6 @@ import time
 how_many_messages = int(input("How many messages do you want me to spam? "))
 message_to_send = input("What message should I send? ")
 
-time.sleep(1)
-
 for i in range (how_many_messages):
     keyboard.write(message_to_send)
     time.sleep(0.1)
