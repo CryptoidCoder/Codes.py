@@ -1,11 +1,17 @@
 
 import random
 
-chars = 'aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789!"£$%^&*()_-+=@{[}]~#?/|\¬¦ .<>'
+characterset = 'aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789!"£$%^&*()_-+=@{[}]~#?/|\¬¦ .<>'
 
-length = int(input('password length?'))
+excluded_charcters = input("Any characters Not Allowed (Leave Blank For No)? ")
 
-amountofpasswords = int(input('how many passwords?'))
+chars = characterset
+for char in excluded_charcters:
+    chars = characterset.replace(char, "") #remove excluded character from characterset
+
+length = int(input('Password Length? '))
+
+amountofpasswords = int(input('How Many Passwords? '))
 
 for p in range(amountofpasswords):
     password = ''
