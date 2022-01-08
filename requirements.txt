@@ -4,6 +4,11 @@ freegames
 #bomb-sound.py
 playsound
 
+#pendulem.py
+numpy
+matplotlib
+scipy
+
 #word_association.py
 nltk
 pandas
