@@ -11,3 +11,7 @@ networkx
 
 #testing.py
 winsound
+
+#Handwriting.py, Asciiart.py, info.py, search.py
+pywhatkit
+flask
