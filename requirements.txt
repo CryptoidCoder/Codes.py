@@ -20,3 +20,6 @@ winsound
 #Handwriting.py, Asciiart.py, info.py, search.py
 pywhatkit
 flask
+
+#snake.py
+freegames
