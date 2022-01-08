@@ -1,5 +1,5 @@
 #script to draw a snowflake
-
+input('Press any key to continue...')
 from turtle import Turtle
 t = Turtle()
 t.speed(0)
@@ -15,4 +15,4 @@ for c in range(5):
  		t.circle(i,a)
  		t.right(b)
  		t.circle(i,a)
-input('Press any key to continue...')
+
